@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Notifications</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/406c42f8c8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="buttons">   <!-- Directly (.class_name) lika toh bhi ek div create hoga with given classname -->
+        <button onclick="showToast(successMsg)">Success</button>
+        <button onclick="showToast(errorMsg)">Error</button>
+        <button onclick="showToast(invalidMsg)">Invalid</button>
+    </div>
+
+    <div id="toastBox">     <!-- Directly (#class_name) lika toh bhi ek div create hoga with given idname -->
+        
+    </div>
+
+    <script>
+        let toastBox = document.getElementById('toastBox');
+        let successMsg = '<i class="fa-solid fa-circle-check"></i> Successfully submitted';
+        let errorMsg = '<i class="fa-solid fa-circle-xmark"></i> Please fix the error';
+        let invalidMsg = '<i class="fa-solid fa-circle-exclamation"></i> Invalid input, enter again';
+
+        function showToast(msg)
+        {
+            let toast = document.createElement('div');        //yaha pe ek div create hua
+            toast.classList.add('toast');            //yaha pe div main toast naam ka class create hua
+            toast.innerHTML = msg;            //message to be displayed
+            toastBox.appendChild(toast);      //har class ko toastBox main append kar diya
+        
+            if(msg.includes('error'))
+            {
+                toast.classList.add('error');
+            }
+            if(msg.includes('Invalid'))
+            {
+                toast.classList.add('invalid');
+            }
+
+            setTimeout(()=>{
+                toast.remove();            /* 6 seconds baad notification ko hata dega*/
+            }, 6000);
+        }
+    </script>
+</body>
+</html>

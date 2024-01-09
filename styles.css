@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {background-color: #f7edff;}
+
+.buttons {margin: 50px;}
+
+.buttons button
+{
+    background-color: #333;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    width: 120px;
+    height: 40px;
+    margin: 5px;
+}
+
+#toastBox
+{
+    position: absolute;
+    bottom: 30px;            /*isse element ko niche se kitna space dena hai voh specify hota hai*/
+    right: 30px;             /*same as above but for right border */
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.toast                 /*yaha pe hum uss class ko modify kr rahe hai which we have created in our script file*/
+{                      /*in short hum screen pe dikhaye jane wale sare notifications ko update kr rahe hai*/
+    width: 400px;
+    height: 80px;
+    background: white;
+    font-weight: 500;
+    margin: 15px 0;    /*sirf upar se aur niche se margin diya left aur right se nhi*/
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    position: relative;
+    /*transform: translateX(100%);*/
+    animation: moveleft 0.5s linear forwards;     /*Animation ka info niche diya hai*/  
+}
+
+@keyframes moveleft      /*The @keyframes CSS at-rule controls the intermediate steps in a CSS animation*/
+{
+    from
+    {transform: translateX(100%);}        /* 100% screen k bahar se 0% screen k andar takk*/
+                        /*Transform lets u rotate the object*/
+    to
+    {transform: translateX(0%);}
+
+    /*100%{
+        transform: translateX(0);
+    }*/
+}
+
+.toast i              /*We are doing this to edit the icons. We used i kyuki saare icons k samne i tag hai*/
+{
+    margin: 0 10px;
+    font-size: 35px;
+    color: green;
+}
+
+.toast.error i
+{
+    color: red;
+}
+
+.toast.invalid i
+{
+    color: orange;
+}
+
+.toast::after
+{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: green;
+    animation: anim 5s linear forwards;
+}
+
+@keyframes anim
+{
+    100%{
+        width: 0;
+    }
+}
+
+.toast.error::after
+{
+    background: red;
+}
+
+.toast.invalid::after
+{
+    background: orange;   
+    /*The ::after selector inserts something after the content of each selected element(s).
+    Use the content property to specify the content to insert.x`    
+    Use the ::before selector to insert something before the content. */
+}
+
+
+
+/*                                 SUB-PROPERTIES
+
+animation-name: declares the name of the @keyframes at-rule to manipulate.
+animation-duration: the length of time it takes for an animation to complete one cycle.
+animation-timing-function: establishes preset acceleration curves such as ease or linear.
+animation-delay: the time between the element being loaded and the start of the animation sequence (cool examples).
+animation-direction: sets the direction of the animation after the cycle. Its default resets on each cycle.
+animation-iteration-count: the number of times the animation should be performed.
+animation-fill-mode: sets which values are applied before/after the animation.
+For example, you can set the last state of the animation to remain on screen, or you can set it to switch back to before when the animation began.
+animation-play-state: pause/play the animation.
+
+*/
